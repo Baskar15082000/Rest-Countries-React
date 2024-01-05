@@ -1,0 +1,18 @@
+header {
+  border-bottom: solid;
+  border-width: 1px;
+}
+
+.countries {
+  justify-content: space-between;
+}
+.card {
+  margin-bottom: 4.5rem;
+}
+img {
+  height: 150px;
+  width: 300px;
+}
+.search_bar {
+  width: 37%;
+}
