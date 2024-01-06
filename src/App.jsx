@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+
 import Header from "./Components/Header";
 import ToolBox from "./Components/ToolBox";
 import Card from "./Components/Card";
 import NotFound from "./Components/NotFound";
 
+export const theme = React.createContext();
 function App() {
   const [country, setCountry] = useState([]);
   const [filter, setFilter] = useState([]);
@@ -13,7 +15,13 @@ function App() {
   const [subregionboolean, setSubregionBoolean] = useState(false);
   const [subregions, setSubregions] = useState([]);
   const [subregionCard, setsubregionCard] = useState([]);
-  const [searchtext, setSearchText] = useState("");
+  const [modetype, setmodetype] = useState("Dark Mode");
+  const [darkTheme, setDarkTheme] = useState(false);
+
+  const style = {
+    backgroundColor: darkTheme ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)",
+    color: darkTheme ? "white" : "black",
+  };
 
   function onclickpopulation(e) {
     console.log("order");
@@ -102,6 +110,12 @@ function App() {
     }
   }
 
+  function darkMode(e) {
+    setmodetype(darkTheme ? "Dark Mode" : "Light Mode");
+    setDarkTheme((pretheme) => !pretheme);
+    console.log("dark");
+  }
+
   useEffect(() => {
     var fun = async () => await fetch("https://restcountries.com/v3.1/all");
     fun()
@@ -115,36 +129,39 @@ function App() {
 
   return (
     <div>
-      <Header />
-      <ToolBox
-        onclick={onclick}
-        onchange={onchange}
-        onclickpopulation={onclickpopulation}
-        onclickarea={onclickarea}
-        regionName={regionName}
-        subregions={subregions}
-        boolean={subregionboolean}
-        onchangesub={onchangeSubregion}
-      />
-      {found ? (
-        <div className="countries d-flex flex-wrap px-5">
-          {filter.map((e) => {
-            // console.log(e.area);
-            return (
-              <Card
-                key={e.name.common}
-                img={e.flags.png}
-                title={e.name.common}
-                population={e.population}
-                region={e.region}
-                capital={e.capital}
-              />
-            );
-          })}
-        </div>
-      ) : (
-        <NotFound />
-      )}
+      <theme.Provider value={darkTheme}>
+        <Header darkMode={darkMode} modetype={modetype} />
+
+        <ToolBox
+          onclick={onclick}
+          onchange={onchange}
+          onclickpopulation={onclickpopulation}
+          onclickarea={onclickarea}
+          regionName={regionName}
+          subregions={subregions}
+          boolean={subregionboolean}
+          onchangesub={onchangeSubregion}
+        />
+        {found ? (
+          <div className="countries d-flex flex-wrap px-5 " style={style}>
+            {filter.map((e) => {
+              // console.log(e.area);
+              return (
+                <Card
+                  key={e.name.common}
+                  img={e.flags.png}
+                  title={e.name.common}
+                  population={e.population}
+                  region={e.region}
+                  capital={e.capital}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <NotFound />
+        )}
+      </theme.Provider>
     </div>
   );
 }

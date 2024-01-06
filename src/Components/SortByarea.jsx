@@ -1,28 +1,35 @@
 import React from "react";
-
+import { useContext } from "react";
+import { theme } from "../App.jsx";
 const SortByarea = ({ onclickarea }) => {
+  const dark = useContext(theme);
+  const style = {
+    backgroundColor: dark ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
+    color: dark ? "white" : "black",
+    minWidth: "6rem",
+    boxShadow: dark
+      ? "2px 2px 2px 0px hsl(209, 23%, 22%) "
+      : "2px 2px 2px 0px rgb(201, 198, 198)",
+  };
   return (
     <div classsname="dropdown ">
       <button
-        className="btn btn-secondary  dropdown-toggle bg-white text-black fw-semibold border-0"
+        className="btn btn-secondary  dropdown-toggle  py-2 fw-semibold border-0"
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
+        style={style}
       >
         Sort By Area
       </button>
-      <ul
-        className="dropdown-menu"
-        onClick={onclickarea}
-        style={{ minWidth: "6rem" }}
-      >
+      <ul className="dropdown-menu" onClick={onclickarea} style={style}>
         <li>
-          <a className="dropdown-item " href="#">
+          <a className="dropdown-item " href="#" style={style}>
             By Accending
           </a>
         </li>
         <li>
-          <a className="dropdown-item " href="#">
+          <a className="dropdown-item " href="#" style={style}>
             By Decending
           </a>
         </li>

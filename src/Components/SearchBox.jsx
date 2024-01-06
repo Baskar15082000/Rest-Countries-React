@@ -1,15 +1,22 @@
 import React from "react";
-
+import { useContext } from "react";
+import { theme } from "../App.jsx";
 const SearchBox = ({ onchange }) => {
+  const dark = useContext(theme);
+  const style = {
+    backgroundColor: dark ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
+    color: dark ? "white" : "black",
+    minWidth: "11rem",
+    boxShadow: dark
+      ? "2px 2px 2px 0px hsl(209, 23%, 22%) "
+      : "2px 2px 2px 0px rgb(201, 198, 198)",
+  };
   return (
     <div className="search_bar d-flex ">
-      {/* <span className="search_icon p-3">
-        <i className="fas fa-search gray-icon"></i>
-      </span> */}
       <input
-        id="search"
+        style={{ ...style }}
         type="text"
-        className="form-control"
+        className="search py-2"
         placeholder="Search for a country..."
         onChange={onchange}
       />

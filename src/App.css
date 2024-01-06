@@ -2,7 +2,17 @@ header {
   border-bottom: solid;
   border-width: 1px;
 }
-
+.mode {
+  border: none;
+  background-color: transparent;
+}
+.search {
+  width: 30rem;
+  padding-left: 3%;
+  border-radius: 1%;
+  border: none;
+  
+}
 .countries {
   justify-content: space-between;
 }
