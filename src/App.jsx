@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "./Components/Header";
-import Search_DropDown from "./Components/Search_DropDown";
+import ToolBox from "./Components/ToolBox";
 import Card from "./Components/Card";
 import NotFound from "./Components/NotFound";
 
@@ -10,43 +10,78 @@ function App() {
   const [search, setSearch] = useState([]);
   const [regionName, setRegionName] = useState("");
   const [found, setFound] = useState(true);
-  const [orderpop, setOrderpop] = useState("");
-  const [orderBoolean, setOrderBoolean] = useState(true);
+  const [subregionboolean, setSubregionBoolean] = useState(false);
+  const [subregions, setSubregions] = useState([]);
+  const [subregionCard, setsubregionCard] = useState([]);
+  const [searchtext, setSearchText] = useState("");
 
   function onclickpopulation(e) {
     console.log("order");
     var sortByPopulation = [...filter];
-    if (e.target.text === "Sort By Accending") {
+    if (e.target.text === "By Accending") {
       sortByPopulation.sort((a, b) => {
         return a.population - b.population;
       });
-
-      setOrderpop(": Increasing");
     } else {
       sortByPopulation.sort((a, b) => {
         return b.population - a.population;
       });
-
-      setOrderpop(": Decreasing");
     }
-
     setFilter(sortByPopulation);
+  }
+  function onchangeSubregion(e) {
+    console.log(e.target.text);
+    // setFilter(sub);
+    const sub = subregionCard.filter((c) => {
+      return c.subregion.includes(e.target.text);
+    });
+
+    setFilter(sub);
+  }
+
+  function onclickarea(e) {
+    var sortByArea = [...filter];
+    if (e.target.text === "By Accending") {
+      sortByArea.sort((a, b) => {
+        return a.area - b.area;
+      });
+    } else {
+      sortByArea.sort((a, b) => {
+        return b.area - a.area;
+      });
+    }
+    setFilter(sortByArea);
   }
 
   function onclick(e) {
     console.log(e.target.text);
 
     if (e.target.text === "All Regions") {
+      setSubregionBoolean(false);
       setFilter(country);
       setRegionName(" ");
       setSearch(country);
     } else {
-      const filteredData = country.filter((c) =>
-        c.region.includes(e.target.text)
-      );
+      setSubregionBoolean(true);
+      const filteredData = country.filter((c) => {
+        return c.region.includes(e.target.text);
+      });
+
+      setSubregions([]);
+      filteredData.map((c) => {
+        setSubregions((prevSubregions) => {
+          if (!prevSubregions.includes(c.subregion)) {
+            return [...prevSubregions, c.subregion];
+          }
+          return prevSubregions;
+        });
+      });
+      console.log(filteredData);
+
       setRegionName(" : " + e.target.text);
       setSearch(filteredData);
       setFilter(filteredData);
+      setsubregionCard(filteredData);
     }
   }
   function onchange(e) {
@@ -81,12 +116,15 @@ function App() {
   return (
     <div>
       <Header />
-      <Search_DropDown
+      <ToolBox
         onclick={onclick}
         onchange={onchange}
-        orderpop={orderpop}
         onclickpopulation={onclickpopulation}
+        onclickarea={onclickarea}
         regionName={regionName}
+        subregions={subregions}
+        boolean={subregionboolean}
+        onchangesub={onchangeSubregion}
       />
       {found ? (
         <div className="countries d-flex flex-wrap px-5">
