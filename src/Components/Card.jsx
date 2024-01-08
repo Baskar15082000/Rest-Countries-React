@@ -1,8 +1,9 @@
 import React from "react";
 import { useContext } from "react";
 import { theme } from "../App.jsx";
+import { useNavigate } from "react-router-dom";
 
-const Card = ({ img, title, population, region, capital }) => {
+const Card = ({ img, title, id, population, region, capital }) => {
   const dark = useContext(theme);
   const style = {
     backgroundColor: dark ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
@@ -12,15 +13,20 @@ const Card = ({ img, title, population, region, capital }) => {
       ? "2px 2px 2px 0px hsl(209, 23%, 22%) "
       : "2px 2px 2px 0px rgb(201, 198, 198)",
   };
+  const navigate = useNavigate();
   return (
-    <div className="card " style={style}>
+    <div
+      className="card "
+      style={style}
+      id={id}
+      onClick={() => navigate("/country/" + id)}
+    >
       <img src={img} className="card-img-top" alt="..." />
-      <div className="card-body">
-        <h5 className="card-title">{title}</h5>
-        <div className="card-text">Population: {population}</div>
-        <div className="card-text">Region: {region}</div>
-        <div className="card-text">Capital: {capital}</div>
-      </div>
+
+      <h5 className="card-title">{title}</h5>
+      <div className="card-text">Population: {population}</div>
+      <div className="card-text">Region: {region}</div>
+      <div className="card-text">Capital: {capital}</div>
     </div>
   );
 };

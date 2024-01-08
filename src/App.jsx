@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-
+import { v4 as uuidv4 } from "uuid";
 import Header from "./Components/Header";
 import ToolBox from "./Components/ToolBox";
 import Card from "./Components/Card";
 import NotFound from "./Components/NotFound";
+import { Routes, Route, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import DetailPage from "./Components/DetailPage";
 
 export const theme = React.createContext();
+
 function App() {
   const [country, setCountry] = useState([]);
   const [filter, setFilter] = useState([]);
@@ -17,6 +21,7 @@ function App() {
   const [subregionCard, setsubregionCard] = useState([]);
   const [modetype, setmodetype] = useState("Dark Mode");
   const [darkTheme, setDarkTheme] = useState(false);
+  const [detailId, setDetailId] = useState(0);
 
   const style = {
     backgroundColor: darkTheme ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)",
@@ -128,41 +133,56 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <>
       <theme.Provider value={darkTheme}>
-        <Header darkMode={darkMode} modetype={modetype} />
+        <NavLink>
+          <Header darkMode={darkMode} modetype={modetype} />
+        </NavLink>
 
-        <ToolBox
-          onclick={onclick}
-          onchange={onchange}
-          onclickpopulation={onclickpopulation}
-          onclickarea={onclickarea}
-          regionName={regionName}
-          subregions={subregions}
-          boolean={subregionboolean}
-          onchangesub={onchangeSubregion}
-        />
-        {found ? (
-          <div className="countries d-flex flex-wrap px-5 " style={style}>
-            {filter.map((e) => {
-              // console.log(e.area);
-              return (
-                <Card
-                  key={e.name.common}
-                  img={e.flags.png}
-                  title={e.name.common}
-                  population={e.population}
-                  region={e.region}
-                  capital={e.capital}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <ToolBox
+                  onclick={onclick}
+                  onchange={onchange}
+                  onclickpopulation={onclickpopulation}
+                  onclickarea={onclickarea}
+                  regionName={regionName}
+                  subregions={subregions}
+                  boolean={subregionboolean}
+                  onchangesub={onchangeSubregion}
                 />
-              );
-            })}
-          </div>
-        ) : (
-          <NotFound />
-        )}
+                {found ? (
+                  <div
+                    className="countries d-flex flex-wrap px-5 "
+                    style={style}
+                  >
+                    {filter.map((e, index) => {
+                      return (
+                        <Card
+                          key={e.name.common}
+                          img={e.flags.png}
+                          id={e.ccn3}
+                          title={e.name.common}
+                          population={e.population}
+                          region={e.region}
+                          capital={e.capital}
+                        />
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <NotFound />
+                )}
+              </>
+            }
+          />
+          <Route path="/country/:id" element={<DetailPage />} />
+        </Routes>
       </theme.Provider>
-    </div>
+    </>
   );
 }
 

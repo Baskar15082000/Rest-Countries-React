@@ -7,6 +7,8 @@ const SortByPopulation = ({ onclickpopulation }) => {
     backgroundColor: dark ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
     color: dark ? "white" : "black",
     minWidth: "11rem",
+  };
+  const shadow = {
     boxShadow: dark
       ? "2px 2px 2px 0px hsl(209, 23%, 22%) "
       : "2px 2px 2px 0px rgb(201, 198, 198)",
@@ -19,7 +21,7 @@ const SortByPopulation = ({ onclickpopulation }) => {
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
-        style={style}
+        style={{ ...style, ...shadow }}
       >
         Sort By Population
       </button>

@@ -11,7 +11,6 @@ header {
   padding-left: 3%;
   border-radius: 1%;
   border: none;
-  
 }
 .countries {
   justify-content: space-between;
@@ -36,4 +35,11 @@ img {
 }
 .arrows {
   font-size: 20px;
+}
+.detailImage {
+  height: 25rem;
+  width: 40rem;
+}
+.button {
+  width: 5rem;
 }

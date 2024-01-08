@@ -11,6 +11,7 @@ const SearchBox = ({ onchange }) => {
       ? "2px 2px 2px 0px hsl(209, 23%, 22%) "
       : "2px 2px 2px 0px rgb(201, 198, 198)",
   };
+
   return (
     <div className="search_bar d-flex ">
       <input
