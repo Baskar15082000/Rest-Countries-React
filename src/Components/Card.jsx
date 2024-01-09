@@ -23,10 +23,10 @@ const Card = ({ img, title, id, population, region, capital }) => {
     >
       <img src={img} className="card-img-top" alt="..." />
 
-      <h5 className="card-title">{title}</h5>
-      <div className="card-text">Population: {population}</div>
-      <div className="card-text">Region: {region}</div>
-      <div className="card-text">Capital: {capital}</div>
+      <h5 className="card-title py-2 px-4">{title}</h5>
+      <div className="card-text py-1 px-4">Population: {population}</div>
+      <div className="card-text py-1 px-4">Region: {region}</div>
+      <div className="card-text py-1 px-4">Capital: {capital}</div>
     </div>
   );
 };

@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import Header from "./Components/Header";
 import ToolBox from "./Components/ToolBox";
 import Card from "./Components/Card";
 import NotFound from "./Components/NotFound";
 import { Routes, Route, NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
 import DetailPage from "./Components/DetailPage";
-
 export const theme = React.createContext();
 
 function App() {
@@ -135,7 +132,7 @@ function App() {
   return (
     <>
       <theme.Provider value={darkTheme}>
-        <NavLink>
+        <NavLink style={{ textDecoration: "none" }}>
           <Header darkMode={darkMode} modetype={modetype} />
         </NavLink>
 
