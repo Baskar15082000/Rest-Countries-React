@@ -5,7 +5,7 @@ const SortByPopulation = ({ onclickpopulation }) => {
   const dark = useContext(theme);
   const style = {
     backgroundColor: dark ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
-    color: dark ? "white" : "black",
+    color: dark ? "hsl(0, 0%, 100%)" : " hsl(200, 15%, 8%)",
     minWidth: "11rem",
   };
   const shadow = {
@@ -17,7 +17,7 @@ const SortByPopulation = ({ onclickpopulation }) => {
   return (
     <div classsname="dropdown ">
       <button
-        className="btn btn-secondary  dropdown-toggle fw-semibold border-0 py-2"
+        className="btn btn-secondary  dropdown-toggle fw-semilight border-0 py-2"
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
@@ -27,12 +27,12 @@ const SortByPopulation = ({ onclickpopulation }) => {
       </button>
       <ul className="dropdown-menu" onClick={onclickpopulation} style={style}>
         <li>
-          <a className="dropdown-item fw-semibold" href="#" style={style}>
+          <a className="dropdown-item fw-semilight" href="#" style={style}>
             By Accending
           </a>
         </li>
         <li>
-          <a className="dropdown-item fw-semibold" href="#" style={style}>
+          <a className="dropdown-item fw-semilight" href="#" style={style}>
             By Decending
           </a>
         </li>

@@ -5,7 +5,7 @@ const SearchBox = ({ onchange }) => {
   const dark = useContext(theme);
   const style = {
     backgroundColor: dark ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
-    color: dark ? "white" : "black",
+    color: dark ? "hsl(0, 0%, 100%)" : " hsl(200, 15%, 8%)",
     minWidth: "11rem",
     boxShadow: dark
       ? "2px 2px 2px 0px hsl(209, 23%, 22%) "

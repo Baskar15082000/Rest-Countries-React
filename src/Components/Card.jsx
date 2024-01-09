@@ -16,17 +16,26 @@ const Card = ({ img, title, id, population, region, capital }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="card "
+      className="card  "
       style={style}
       id={id}
       onClick={() => navigate("/country/" + id)}
     >
-      <img src={img} className="card-img-top" alt="..." />
+      <img src={img} className="img  " alt="..." />
 
-      <h5 className="card-title py-2 px-4">{title}</h5>
-      <div className="card-text py-1 px-4">Population: {population}</div>
-      <div className="card-text py-1 px-4">Region: {region}</div>
-      <div className="card-text py-1 px-4">Capital: {capital}</div>
+      <h5 className="card-title py-2 px-4 pt-4">{title}</h5>
+      <div className="card-text py-1 px-4">
+        <span className="key">Population: </span>
+        {population}
+      </div>
+      <div className="card-text py-1 px-4">
+        <span className="key">Region: </span>
+        {region}
+      </div>
+      <div className="card-text py-1 px-4 pb-5">
+        <span className="key">Capital: </span>
+        {capital}
+      </div>
     </div>
   );
 };

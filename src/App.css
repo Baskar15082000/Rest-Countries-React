@@ -1,7 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,600;6..12,800&display=swap");
+* {
+  font-size: 14px;
+}
 .mode {
   border: none;
   background-color: transparent;
 }
+
 .search {
   width: 30rem;
   padding-left: 3%;
@@ -14,7 +19,7 @@
 .card {
   margin-bottom: 4.5rem;
 }
-img {
+.img {
   height: 150px;
   width: 300px;
 }
@@ -29,8 +34,8 @@ img {
   background-color: white;
   font-size: 0.8rem;
 }
-.arrows {
-  font-size: 20px;
+.key {
+  font-weight: 500;
 }
 .arrow {
   font-size: 35px;

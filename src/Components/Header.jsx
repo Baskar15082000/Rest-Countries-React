@@ -6,7 +6,8 @@ const Header = ({ darkMode, modetype }) => {
   console.log(dark);
   const style = {
     backgroundColor: dark ? "hsl(209, 23%, 22%)" : "hsl(0, 0%, 100%)",
-    color: dark ? "white" : "black",
+    color: dark ? "hsl(0, 0%, 100%)" : " hsl(200, 15%, 8%)",
+    fontWeight: "800",
   };
 
   return (

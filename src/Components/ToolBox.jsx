@@ -21,7 +21,7 @@ const ToolBox = ({
   const dark = useContext(theme);
   const style = {
     backgroundColor: dark ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)",
-    color: dark ? "white" : "black",
+    color: dark ? "hsl(0, 0%, 100%)" : " hsl(200, 15%, 8%)",
   };
   return (
     <div

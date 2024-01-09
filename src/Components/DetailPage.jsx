@@ -20,7 +20,8 @@ const DetailPage = () => {
 
   const style1 = {
     backgroundColor: dark ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)",
-    color: dark ? "white" : "black",
+    color: dark ? "hsl(0, 0%, 100%)" : " hsl(200, 15%, 8%)",
+    fontSize: "16px",
   };
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const DetailPage = () => {
   }
 
   return (
-    <div className="detailpage d-flex  flex-column px-5 " style={style1}>
+    <div className="detailpage d-flex  flex-column px-5  " style={style1}>
       <button
         className="button my-5 "
         style={style}
@@ -68,33 +69,44 @@ const DetailPage = () => {
         </span>
       </button>
       <div className="containter-fluid d-flex justify-content-between align-items-center">
-        <img className="detailImage  " src={flag[0]?.flags.png} alt="" />
+        <img className="detailImage  me-5 " src={flag[0]?.flags.png} alt="" />
         <div className="container-fluid d-flex flex-column ms-5 px-3 ">
           <div>
             <h1>{flag[0]?.name.common}</h1>
           </div>
           <div className="details d-flex mt-2">
-            <div className="card border-0 mb-4" style={style1}>
+            <div className="card border-0 mb-4 me-5" style={style1}>
               <div className="card-text pe-4 ">
-                Native Name: {flag[0]?.name.nativeName[lan[0]].official}
+                <span className="key">Native Name: </span>
+                {flag[0]?.name.nativeName[lan[0]].official}
               </div>
               <div className="card-text py-1">
-                Population: {flag[0]?.population}
+                <span className="key"> Population: </span> {flag[0]?.population}
               </div>
-              <div className="card-text py-1">Region: {flag[0]?.region}</div>
               <div className="card-text py-1">
-                Sub Region: {flag[0]?.subregion}
+                <span className="key">Region: </span> {flag[0]?.region}
               </div>
-              <div className="card-text py-1">Capital: {flag[0]?.capital}</div>
+              <div className="card-text py-1">
+                <span className="key">Sub Region: </span>
+                {flag[0]?.subregion}
+              </div>
+              <div className="card-text py-1">
+                <span className="key">Capital: </span>
+                {flag[0]?.capital}
+              </div>
             </div>
             <div className="card ms-5 px-3 border-0" style={style1}>
               <div className="card-text py-1">
-                Top Level Domain: {flag[0]?.tld}
+                <span className="key"> Top Level Domain: </span>
+                {flag[0]?.tld}
               </div>
-              <div className="card-text py-1">Currencies: {currencyName}</div>
+              <div className="card-text py-1">
+                <span className="key">Currencies: </span>
+                {currencyName}
+              </div>
               {/* Assuming langu is an array of language names */}
               <div className="card-text py-1">
-                Languages:{" "}
+                <span className="key">Languages: </span>
                 {langu &&
                   langu.map((language, index) => (
                     <span key={index}>{language[1] + " "}</span>
@@ -103,7 +115,7 @@ const DetailPage = () => {
             </div>
           </div>
           <div className="footer d-flex  " style={style1}>
-            Border Countries:{" "}
+            <span className="key"> Border Countries: </span>
             {flag[0]?.borders?.length > 0
               ? flag[0]?.borders.map((e, index) => {
                   return (
