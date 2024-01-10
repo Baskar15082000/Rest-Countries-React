@@ -123,7 +123,7 @@ const DetailPage = () => {
                 ? flag[0]?.borders.map((e, index) => {
                     return (
                       <button
-                        className="bdctr px-3 mx-3 py-1"
+                        className="bdctr px-3 mx-3 py-1 my-2"
                         style={style}
                         onClick={() => {
                           setBOrders(e);
