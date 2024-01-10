@@ -70,7 +70,7 @@ const DetailPage = () => {
         </span>
       </button>
       {flag[0] ? (
-        <div className="containter-fluid d-flex justify-content-between align-items-center">
+        <div className="containter-fluid d-flex flex-column flex-lg-row justify-content-between align-items-center">
           <img className="detailImage  me-5 " src={flag[0]?.flags.png} alt="" />
           <div className="container-fluid d-flex flex-column ms-5 px-3 ">
             <div>

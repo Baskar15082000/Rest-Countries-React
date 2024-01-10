@@ -25,7 +25,7 @@ const ToolBox = ({
   };
   return (
     <div
-      className="operation d-flex justify-content-between align-items-center py-5 px-5"
+      className="operation d-flex flex-column flex-lg-row  justify-content-between align-items-center py-5 px-5"
       style={style}
     >
       <SearchBox onchange={onchange} />
