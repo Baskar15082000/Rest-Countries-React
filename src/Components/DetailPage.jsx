@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { theme } from "../App.jsx";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 const DetailPage = () => {
   const [flag, setflag] = useState([]);
@@ -68,74 +69,79 @@ const DetailPage = () => {
           <span className="arrow ">&larr;</span> Go Back
         </span>
       </button>
-      <div className="containter-fluid d-flex justify-content-between align-items-center">
-        <img className="detailImage  me-5 " src={flag[0]?.flags.png} alt="" />
-        <div className="container-fluid d-flex flex-column ms-5 px-3 ">
-          <div>
-            <h1>{flag[0]?.name.common}</h1>
-          </div>
-          <div className="details d-flex mt-2">
-            <div className="card border-0 mb-4 me-5" style={style1}>
-              <div className="card-text pe-4 ">
-                <span className="key">Native Name: </span>
-                {flag[0]?.name.nativeName[lan[0]].official}
+      {flag[0] ? (
+        <div className="containter-fluid d-flex justify-content-between align-items-center">
+          <img className="detailImage  me-5 " src={flag[0]?.flags.png} alt="" />
+          <div className="container-fluid d-flex flex-column ms-5 px-3 ">
+            <div>
+              <h1>{flag[0]?.name.common}</h1>
+            </div>
+            <div className="details d-flex mt-2">
+              <div className="card border-0 mb-4 me-5" style={style1}>
+                <div className="card-text pe-4 ">
+                  <span className="key">Native Name: </span>
+                  {flag[0]?.name.nativeName[lan[0]].official}
+                </div>
+                <div className="card-text py-1">
+                  <span className="key"> Population: </span>{" "}
+                  {flag[0]?.population}
+                </div>
+                <div className="card-text py-1">
+                  <span className="key">Region: </span> {flag[0]?.region}
+                </div>
+                <div className="card-text py-1">
+                  <span className="key">Sub Region: </span>
+                  {flag[0]?.subregion}
+                </div>
+                <div className="card-text py-1">
+                  <span className="key">Capital: </span>
+                  {flag[0]?.capital}
+                </div>
               </div>
-              <div className="card-text py-1">
-                <span className="key"> Population: </span> {flag[0]?.population}
-              </div>
-              <div className="card-text py-1">
-                <span className="key">Region: </span> {flag[0]?.region}
-              </div>
-              <div className="card-text py-1">
-                <span className="key">Sub Region: </span>
-                {flag[0]?.subregion}
-              </div>
-              <div className="card-text py-1">
-                <span className="key">Capital: </span>
-                {flag[0]?.capital}
+              <div className="card ms-5 px-3 border-0" style={style1}>
+                <div className="card-text py-1">
+                  <span className="key"> Top Level Domain: </span>
+                  {flag[0]?.tld}
+                </div>
+                <div className="card-text py-1">
+                  <span className="key">Currencies: </span>
+                  {currencyName}
+                </div>
+                {/* Assuming langu is an array of language names */}
+                <div className="card-text py-1">
+                  <span className="key">Languages: </span>
+                  {langu &&
+                    langu.map((language, index) => (
+                      <span key={index}>{language[1] + " "}</span>
+                    ))}
+                </div>
               </div>
             </div>
-            <div className="card ms-5 px-3 border-0" style={style1}>
-              <div className="card-text py-1">
-                <span className="key"> Top Level Domain: </span>
-                {flag[0]?.tld}
-              </div>
-              <div className="card-text py-1">
-                <span className="key">Currencies: </span>
-                {currencyName}
-              </div>
-              {/* Assuming langu is an array of language names */}
-              <div className="card-text py-1">
-                <span className="key">Languages: </span>
-                {langu &&
-                  langu.map((language, index) => (
-                    <span key={index}>{language[1] + " "}</span>
-                  ))}
-              </div>
+            <div className="footer d-flex  " style={style1}>
+              <span className="key"> Border Countries: </span>
+              {flag[0]?.borders?.length > 0
+                ? flag[0]?.borders.map((e, index) => {
+                    return (
+                      <button
+                        className="bdctr px-3 mx-3 py-1"
+                        style={style}
+                        onClick={() => {
+                          setBOrders(e);
+                          navigate("/country/" + borders);
+                        }}
+                        key={index}
+                      >
+                        {e}
+                      </button>
+                    );
+                  })
+                : "N/A"}
             </div>
-          </div>
-          <div className="footer d-flex  " style={style1}>
-            <span className="key"> Border Countries: </span>
-            {flag[0]?.borders?.length > 0
-              ? flag[0]?.borders.map((e, index) => {
-                  return (
-                    <button
-                      className="bdctr px-3 mx-3 py-1"
-                      style={style}
-                      onClick={() => {
-                        setBOrders(e);
-                        navigate("/country/" + borders);
-                      }}
-                      key={index}
-                    >
-                      {e}
-                    </button>
-                  );
-                })
-              : "N/A"}
           </div>
         </div>
-      </div>
+      ) : (
+        <CircularProgress className="loading w-25 h-25 " />
+      )}
     </div>
   );
 };

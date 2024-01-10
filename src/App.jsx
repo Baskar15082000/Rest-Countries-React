@@ -5,6 +5,7 @@ import Card from "./Components/Card";
 import NotFound from "./Components/NotFound";
 import { Routes, Route, NavLink } from "react-router-dom";
 import DetailPage from "./Components/DetailPage";
+import { CircularProgress } from "@mui/material";
 export const theme = React.createContext();
 
 function App() {
@@ -135,7 +136,6 @@ function App() {
         <NavLink style={{ textDecoration: "none" }}>
           <Header darkMode={darkMode} modetype={modetype} />
         </NavLink>
-
         <Routes>
           <Route
             path="/"
@@ -156,19 +156,23 @@ function App() {
                     className="countries d-flex flex-wrap px-5 "
                     style={style}
                   >
-                    {filter.map((e, index) => {
-                      return (
-                        <Card
-                          key={e.name.common}
-                          img={e.flags.png}
-                          id={e.ccn3}
-                          title={e.name.common}
-                          population={e.population}
-                          region={e.region}
-                          capital={e.capital}
-                        />
-                      );
-                    })}
+                    {filter.length > 0 ? (
+                      filter.map((e, index) => {
+                        return (
+                          <Card
+                            key={e.name.common}
+                            img={e.flags.png}
+                            id={e.cca3}
+                            title={e.name.common}
+                            population={e.population}
+                            region={e.region}
+                            capital={e.capital}
+                          />
+                        );
+                      })
+                    ) : (
+                      <CircularProgress className="loading w-25 h-25 " />
+                    )}
                   </div>
                 ) : (
                   <NotFound />

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { theme } from "../App.jsx";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 const Header = ({ darkMode, modetype }) => {
   const dark = useContext(theme);
@@ -14,7 +15,7 @@ const Header = ({ darkMode, modetype }) => {
     <header className="d-flex justify-content-between py-3 px-5" style={style}>
       <div className="title">Where in the world?</div>
       <button className="mode" onClick={darkMode} style={style}>
-        {modetype}
+        <DarkModeIcon /> {modetype}
       </button>
     </header>
   );
